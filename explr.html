@@ -1,0 +1,980 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Slider in HTML CSS and JavaScript | CodingNepal</title>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="main-style.css" />
+    <script src="script.js" defer></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #f1f4fd;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 95%;
+        }
+
+        .slider-wrapper {
+            position: relative;
+        }
+
+        .slider-wrapper .slide-button {
+            position: absolute;
+            top: 50%;
+            outline: none;
+            border: none;
+            height: 50px;
+            width: 50px;
+            z-index: 5;
+            color: #fff;
+            display: flex;
+            cursor: pointer;
+            font-size: 2.2rem;
+            background: #000;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+
+        .slider-wrapper .slide-button:hover {
+            background: #404040;
+        }
+
+        .slider-wrapper .slide-button#prev-slide {
+            left: -25px;
+            display: none;
+        }
+
+        .slider-wrapper .slide-button#next-slide {
+            right: -25px;
+        }
+
+        .slider-wrapper .image-list {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 18px;
+            font-size: 0;
+            list-style: none;
+            margin-bottom: 30px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .slider-wrapper .image-list::-webkit-scrollbar {
+            display: none;
+        }
+
+        .slider-wrapper .image-list .image-item {
+            width: 325px;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .container .slider-scrollbar {
+            height: 24px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .slider-scrollbar .scrollbar-track {
+            background: #ccc;
+            width: 100%;
+            height: 2px;
+            display: flex;
+            align-items: center;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .slider-scrollbar:hover .scrollbar-track {
+            height: 4px;
+        }
+
+        .slider-scrollbar .scrollbar-thumb {
+            position: absolute;
+            background: #000;
+            top: 0;
+            bottom: 0;
+            width: 50%;
+            height: 100%;
+            cursor: grab;
+            border-radius: inherit;
+        }
+
+        .slider-scrollbar .scrollbar-thumb:active {
+            cursor: grabbing;
+            height: 8px;
+            top: -2px;
+        }
+
+        .slider-scrollbar .scrollbar-thumb::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: -10px;
+            bottom: -10px;
+        }
+
+        /* Styles for mobile and tablets */
+        @media only screen and (max-width: 1023px) {
+            .slider-wrapper .slide-button {
+                display: none !important;
+            }
+
+            .slider-wrapper .image-list {
+                gap: 10px;
+                margin-bottom: 15px;
+                scroll-snap-type: x mandatory;
+            }
+
+            .slider-wrapper .image-list .image-item {
+                width: 280px;
+                height: 380px;
+            }
+
+            .slider-scrollbar .scrollbar-thumb {
+                width: 20%;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="slider-wrapper">
+            <button id="prev-slide" class="slide-button material-symbols-rounded">
+                chevron_left
+            </button>
+            <ul class="image-list">
+                <img class="image-item" src="toy-item/item-3.webp" alt="img-1" />
+                <img class="image-item" src="toy-item/item-3.webp" alt="img-2" />
+                <img class="image-item" src="toy-item/item-3.webp" alt="img-3" />
+                <img class="image-item" src="toy-item/item-3.webp" alt="img-4" />
+                <img class="image-item" src="toy-item/item-3.webp" alt="img-5" />
+                <img class="image-item" src="toy-item/item-3.webp" alt="img-6" />
+                <img class="image-item" src="toy-item/item-3.webp" alt="img-7" />
+                <img class="image-item" src="toy-item/item-3.webp" alt="img-8" />
+                <img class="image-item" src="toy-item/item-3.webp" alt="img-9" />
+                <img class="image-item" src="toy-item/item-3.webp" alt="img-10" />
+            </ul>
+            <button id="next-slide" class="slide-button material-symbols-rounded">
+                chevron_right
+            </button>
+        </div>
+        <div class="slider-scrollbar">
+            <div class="scrollbar-track">
+                <div class="scrollbar-thumb"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="main-women">
+        <div class="main-women-Text">
+            <h2>Welcome to Women Section </h2>
+            
+            <h1>Handmade suits, chunnis, and accessories crafted with love just for you.</h1>
+            <h1>Wear handmade embroidery that speaks your personality.</h1>
+            <h1>Our handmade collection adds a touch of tradition with a modern vibe.</h1>
+            
+            <p>Trending Handmade Products are here</p>
+            <button id="wmnbtn"><a href="women.html">SEE ALL ITEMS</a></button>
+        </div>
+        
+
+        <div class="square-box">
+            <div class="image-grid">
+                <img src="images/picture-1.jpg" alt="Item 1">
+                <img src="images/hat.jpg" alt="Item 2">
+                <img src="images/jutti1.jpg" alt="Item 3">
+                <img src="images/picture-7.jpg" alt="Item 4">
+                <img src="images/jutti2.jpg" alt="Item 5">
+                <img src="images/purse.jpg" alt="Item 1">
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="main-men">
+
+        <div class="main-men-Text">
+            <h2>Welcome to Men's Section </h2>
+         
+            <h1>Kolhapuri chappals, embroidered shirts, and more – handmade just for you</h1>
+            <h1>Upgrade your wardrobe with authentic, handcrafted elegance</h1>
+            <h1>Each piece is made by skilled hands, built to make a statement.</h1>
+            <h1>Explore shawls, chappals, and more – rooted in culture, designed for men.</h1>
+            
+            <p style="margin-bottom:30px">Trending Handmade Products are here</p>
+            <button><a href="mens.html">SEE ALL ITEMS</a></button>
+        </div>
+        
+
+        <div class="square-box-men">
+            <div class="image-grid-men">
+                <img src="images/shirt1.jpg" alt="Item 1">
+                <img src="images/cpl.jpg" alt="Item 2">
+                <img src="images/jct.jpg" alt="Item 3">
+                <img src="images/mflr.jpg" alt="Item 4">
+                <img src="images/cpl2.jpg" alt="Item 5">
+                <img src="images/shirt2.jpg" alt="Item 1">
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+        const initSlider = () => {
+            const imageList = document.querySelector(".slider-wrapper .image-list");
+            const slideButtons = document.querySelectorAll(".slider-wrapper .slide-button");
+            const sliderScrollbar = document.querySelector(".container .slider-scrollbar");
+            const scrollbarThumb = sliderScrollbar.querySelector(".scrollbar-thumb");
+            const maxScrollLeft = imageList.scrollWidth - imageList.clientWidth;
+
+            // Handle scrollbar thumb drag
+            scrollbarThumb.addEventListener("mousedown", (e) => {
+                const startX = e.clientX;
+                const thumbPosition = scrollbarThumb.offsetLeft;
+                const maxThumbPosition = sliderScrollbar.getBoundingClientRect().width - scrollbarThumb.offsetWidth;
+
+                // Update thumb position on mouse move
+                const handleMouseMove = (e) => {
+                    const deltaX = e.clientX - startX;
+                    const newThumbPosition = thumbPosition + deltaX;
+                    // Ensure the scrollbar thumb stays within bounds
+                    const boundedPosition = Math.max(0, Math.min(maxThumbPosition, newThumbPosition));
+                    const scrollPosition = (boundedPosition / maxThumbPosition) * maxScrollLeft;
+
+                    scrollbarThumb.style.left = `${boundedPosition}px`;
+                    imageList.scrollLeft = scrollPosition;
+                }
+                // Remove event listeners on mouse up
+                const handleMouseUp = () => {
+                    document.removeEventListener("mousemove", handleMouseMove);
+                    document.removeEventListener("mouseup", handleMouseUp);
+                }
+                // Add event listeners for drag interaction
+                document.addEventListener("mousemove", handleMouseMove);
+                document.addEventListener("mouseup", handleMouseUp);
+            });
+            // Slide images according to the slide button clicks
+            slideButtons.forEach(button => {
+                button.addEventListener("click", () => {
+                    const direction = button.id === "prev-slide" ? -1 : 1;
+                    const scrollAmount = imageList.clientWidth * direction;
+                    imageList.scrollBy({ left: scrollAmount, behavior: "smooth" });
+                });
+            });
+            // Show or hide slide buttons based on scroll position
+            const handleSlideButtons = () => {
+                slideButtons[0].style.display = imageList.scrollLeft <= 0 ? "none" : "flex";
+                slideButtons[1].style.display = imageList.scrollLeft >= maxScrollLeft ? "none" : "flex";
+            }
+            // Update scrollbar thumb position based on image scroll
+            const updateScrollThumbPosition = () => {
+                const scrollPosition = imageList.scrollLeft;
+                const thumbPosition = (scrollPosition / maxScrollLeft) * (sliderScrollbar.clientWidth - scrollbarThumb.offsetWidth);
+                scrollbarThumb.style.left = `${thumbPosition}px`;
+            }
+            // Call these two functions when image list scrolls
+            imageList.addEventListener("scroll", () => {
+                updateScrollThumbPosition();
+                handleSlideButtons();
+            });
+        }
+        window.addEventListener("resize", initSlider);
+        window.addEventListener("load", initSlider);
+
+    </script>
+
+</body>
+
+</html> -->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Village Bazaar - Handmade Items</title>
+
+    <!-- Google Fonts Link For Icons -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+    <!-- <link rel="stylesheet" href="main-style.css" />
+    <link rel="stylesheet" href="style.css"> -->
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f4fd;
+            padding-bottom: 50px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 95%;
+            margin: auto;
+            margin-top: 50px;
+        }
+
+        .slider-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #000;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #prev-slide {
+            left: 0;
+            display: none;
+        }
+
+        #next-slide {
+            right: 0;
+        }
+
+        .image-list {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 15px;
+            padding: 10px 0;
+        }
+
+        .image-list::-webkit-scrollbar {
+            display: none;
+        }
+
+        .image-item {
+            width: 300px;
+            height: 400px;
+            object-fit: cover;
+            flex-shrink: 0;
+            border-radius: 10px;
+        }
+
+        .slider-scrollbar {
+            height: 10px;
+            background: #ccc;
+            border-radius: 5px;
+            position: relative;
+            margin-top: 10px;
+        }
+
+        .scrollbar-thumb {
+            background: #000;
+            height: 100%;
+            width: 20%;
+            position: absolute;
+            left: 0;
+            border-radius: 5px;
+            cursor: grab;
+        }
+
+        /* Section Styles */
+        .main-women,
+        .main-men {
+            margin: 60px auto;
+            padding: 20px;
+            max-width: 1200px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-women h2,
+        .main-men h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .main-women h1,
+        .main-men h1 {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        .main-women p,
+        .main-men p {
+            margin: 20px 0;
+        }
+
+        button a {
+            color: white;
+            text-decoration: none;
+        }
+
+        button {
+            background-color: #000;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .square-box,
+        .square-box-men {
+            margin-top: 20px;
+        }
+
+        .image-grid,
+        .image-grid-men {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .image-grid img,
+        .image-grid-men img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .slide-button {
+                display: none !important;
+            }
+
+            .image-item {
+                width: 250px;
+                height: 300px;
+            }
+
+            .scrollbar-thumb {
+                width: 30%;
+            }
+        }
+    </style>
+
+    <style>
+        /* Main headlines*/
+        .main-women {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            /* background-color: #f9f9f9;  */
+            /*  background-color:rgb(153, 228, 121); */
+            /* background-color:antiquewhite; */
+            /* background-color:rgb(241, 250, 226); */
+            /* background-color: rgb(255, 240, 245); */
+            /*  background-color: rgb(255, 228, 225); */
+            /* background-color: rgb(230, 230, 250); */
+            /* background-color: rgb(255, 228, 235); */
+            /* background-color: rgb(244, 238, 246) */
+
+            background: linear-gradient(90deg, rgba(242, 196, 232, 1) 0%, rgba(245, 245, 245, 1) 50%, rgba(179, 245, 255, 1) 100%);
+        }
+
+        .main-women-Text {
+            width: 50%;
+            padding-left: 20px;
+        }
+
+        .main-women-Text .top-line {
+            font-size: 40px;
+            padding-top: 14px;
+
+        }
+
+        .main-women-Text h2 {
+            font-size: 50px;
+            padding-bottom: 25px;
+            color: rgb(180, 32, 82);
+        }
+
+        .main-women-Text h1 {
+            font-size: 30px;
+            /* font-weight: 300; */
+            color: #025c1b;
+        }
+
+        .main-women-Text p {
+            /* margin-bottom: 20px; */
+            font-size: 40px;
+            color: darkblue;
+        }
+
+
+        .main-women-Text button {
+            width: 200px;
+            height: 40px;
+            /* background-color: rgb(9, 151, 151); */
+            background-color: rgb(216, 134, 134);
+            border: none;
+            font-size: 22px;
+            /* color: white; */
+            /* color:  #001524; */
+            color: #001524;
+            margin-top: 24px;
+            /* margin-bottom: 24px; */
+            margin-bottom: 144px;
+            border-radius: 20px;
+        }
+
+
+        .main-women-Text button:hover {
+            border: 3px solid #001524;
+            ;
+            background-color: transparent;
+            color: #001524;
+        }
+
+
+        .main-women-Text h1,
+        .mainText h2,
+        .mainText p,
+        .mainText button {
+            margin-bottom: 15px;
+        }
+
+        .main-women img {
+            width: 40%;
+            height: auto;
+            border-radius: 10px;
+            /* Optional styling */
+        }
+
+        @media (max-width: 768px) {
+            .main-women {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .main-women-Text,
+            .main-women img {
+                width: 90%;
+            }
+        }
+
+
+        /* buttin for women*/
+
+        /* .main-momen button { */
+        #wmnbtn {
+            display: block;
+            width: 180px;
+            height: 40px;
+            margin: 0 auto;
+            /* background-color: rgb(9, 151, 151); */
+            background-color: rgb(59, 125, 224);
+            border: none;
+            font-size: 20px;
+            /* color: white; */
+            /* color:  #001524; */
+            color: #c31010;
+            margin-top: 10px;
+            ;
+            /* margin-bottom: 24px; */
+
+            cursor: pointer;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        /* .main-women button a { */
+        #wmnbtn a {
+            text-decoration: none;
+            color: white;
+        }
+
+        /* .main-women button:hover a{ */
+        #wmnbtn:hover a {
+            color: rgb(11, 11, 11);
+            /* background-color: rgb(229, 233, 239);; */
+        }
+
+
+        /*women grid */
+
+        .square-box {
+            width: 500px;
+            height: 500px;
+            margin: 40px auto;
+            margin-right: 20px;
+            background-color: rgb(255, 240, 245);
+            /* Light pink */
+            border: 2px solid #ccc;
+            border-radius: 20px;
+            padding: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            height: 100%;
+        }
+
+        .image-grid img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .image-grid img:hover {
+            transform: scale(1.05);
+        }
+
+
+
+
+
+
+        /*  Mens section */
+
+
+        /* Main headlines*/
+        .main-men {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+            /* background-color:rgb(237, 239, 247); */
+            /* background-color:antiquewhite; */
+            /* background-color:rgb(241, 250, 226); */
+            /* background-color: rgb(255, 240, 245); */
+            /*  background-color: rgb(255, 228, 225); */
+            /* background-color: rgb(230, 230, 250); */
+            /* background-color: rgb(255, 228, 235); */
+            /* background-color: rgb(244, 238, 246) */
+            /* background: linear-gradient(90deg,rgba(212, 212, 250, 0.94) 0%, rgba(168, 255, 210, 0.78) 53%, rgba(168, 243, 255, 1) 100%); */
+            /* background: linear-gradient(90deg,rgba(148, 167, 247, 0.94) 0%, rgba(168, 255, 210, 0.02) 53%, rgba(110, 218, 235, 1) 100%); */
+            /* background: linear-gradient(90deg,rgba(42, 123, 155, 0.41) 0%, rgba(87, 199, 133, 0.37) 50%, rgba(237, 221, 83, 0.51) 100%); */
+
+            /* background: linear-gradient(90deg,rgba(83, 237, 229, 0.41) 0%, rgba(87, 199, 133, 0) 50%, rgba(83, 237, 229, 0.51) 100%); */
+            /* background: linear-gradient(90deg,rgba(83, 237, 229, 0) 0%, rgba(87, 199, 133, 0) 50%, rgba(83, 237, 229, 0.51) 100%); */
+
+        }
+
+        .main-men-Text {
+            width: 50%;
+            padding-left: 20px;
+        }
+
+        .main-men-Text .top-line {
+            font-size: 40px;
+            padding-top: 14px;
+
+        }
+
+        .main-men-Text h2 {
+            font-size: 50px;
+            padding-bottom: 25px;
+            color: rgb(34, 7, 100);
+        }
+
+        .main-men-Text h1 {
+            font-size: 30px;
+            /* font-weight: 300; */
+            color: #39034d;
+            color: #025c1b;
+        }
+
+        .main-men-Text p {
+            font-size: 30px;
+            color: darkblue;
+        }
+
+
+        .main-men-Text button {
+            width: 200px;
+            height: 40px;
+            /* background-color: rgb(9, 151, 151); */
+            background-color: rgb(216, 134, 134);
+            border: none;
+            font-size: 22px;
+            /* color: white; */
+            /* color:  #001524; */
+            color: #001524;
+            margin-top: 24px;
+            /* margin-bottom: 24px; */
+            margin-bottom: 144px;
+            border-radius: 20px;
+        }
+
+
+        .main-men-Text button:hover {
+            border: 3px solid #001524;
+            ;
+            background-color: transparent;
+            color: #001524;
+        }
+
+
+        .main-men-Text h1,
+        .mainText h2,
+        .mainText p,
+        .mainText button {
+            margin-bottom: 15px;
+        }
+
+        .main-men img {
+            width: 40%;
+            height: auto;
+            border-radius: 10px;
+            /* Optional styling */
+        }
+
+        @media (max-width: 768px) {
+            .main-men {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .main-men-Text,
+            .main-men img {
+                width: 90%;
+            }
+        }
+
+
+
+
+        .square-box-men {
+            width: 500px;
+            height: 500px;
+            margin: 40px auto;
+            margin-right: 20px;
+            background-color: rgb(255, 240, 245);
+            /* Light pink */
+            border: 2px solid #ccc;
+            border-radius: 20px;
+            padding: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .image-grid-men {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            height: 100%;
+        }
+
+        .image-grid-men img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .image-grid-men img:hover {
+            transform: scale(1.05);
+        }
+
+
+        /* buttin for men and women*/
+
+        .main-men button {
+            display: block;
+            width: 180px;
+            height: 40px;
+            margin: 0 auto;
+            /* background-color: rgb(9, 151, 151); */
+            background-color: rgb(59, 125, 224);
+            border: none;
+            font-size: 20px;
+            /* color: white; */
+            /* color:  #001524; */
+            color: #c31010;
+            margin-top: 10px;
+            ;
+            /* margin-bottom: 24px; */
+
+            cursor: pointer;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .main-men button a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .main-men button:hover a {
+            color: rgb(11, 11, 11);
+            /* background-color: rgb(229, 233, 239);; */
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <!-- Image Slider -->
+    <div class="container">
+        <div class="slider-wrapper">
+            <button id="prev-slide" class="slide-button material-symbols-rounded">chevron_left</button>
+            <div class="image-list">
+                <img class="image-item" src="toy-item/item-3.webp" alt="Item 1">
+                <img class="image-item" src="toy-item/item-3.webp" alt="Item 2">
+                <img class="image-item" src="toy-item/item-3.webp" alt="Item 3">
+                <img class="image-item" src="toy-item/item-3.webp" alt="Item 4">
+                <img class="image-item" src="toy-item/item-3.webp" alt="Item 5">
+                <img class="image-item" src="toy-item/item-3.webp" alt="Item 6">
+                <img class="image-item" src="toy-item/item-3.webp" alt="Item 7">
+                <img class="image-item" src="toy-item/item-3.webp" alt="Item 8">
+            </div>
+            <button id="next-slide" class="slide-button material-symbols-rounded">chevron_right</button>
+        </div>
+        <div class="slider-scrollbar">
+            <div class="scrollbar-thumb"></div>
+        </div>
+    </div>
+
+    <!-- Women Section -->
+    <div class="main-women">
+        <h2>Welcome to Women Section</h2>
+        <h1>Handmade suits, chunnis, and accessories crafted with love just for you.</h1>
+        <h1>Wear handmade embroidery that speaks your personality.</h1>
+        <h1>Our handmade collection adds a touch of tradition with a modern vibe.</h1>
+        <p>Trending Handmade Products are here</p>
+        <button><a href="women.html">SEE ALL ITEMS</a></button>
+
+        <div class="square-box">
+            <div class="image-grid">
+                <img src="images/picture-1.jpg" alt="Item 1">
+                <img src="images/hat.jpg" alt="Item 2">
+                <img src="images/jutti1.jpg" alt="Item 3">
+                <img src="images/picture-7.jpg" alt="Item 4">
+                <img src="images/jutti2.jpg" alt="Item 5">
+                <img src="images/purse.jpg" alt="Item 6">
+            </div>
+        </div>
+    </div>
+
+    <!-- Men Section -->
+    <div class="main-men">
+        <h2>Welcome to Men's Section</h2>
+        <h1>Kolhapuri chappals, embroidered shirts, and more – handmade just for you</h1>
+        <h1>Upgrade your wardrobe with authentic, handcrafted elegance</h1>
+        <h1>Each piece is made by skilled hands, built to make a statement.</h1>
+        <p>Trending Handmade Products are here</p>
+        <button><a href="mens.html">SEE ALL ITEMS</a></button>
+
+        <div class="square-box-men">
+            <div class="image-grid-men">
+                <img src="images/shirt1.jpg" alt="Item 1">
+                <img src="images/cpl.jpg" alt="Item 2">
+                <img src="images/jct.jpg" alt="Item 3">
+                <img src="images/mflr.jpg" alt="Item 4">
+                <img src="images/cpl2.jpg" alt="Item 5">
+                <img src="images/shirt2.jpg" alt="Item 6">
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        const imageList = document.querySelector(".image-list");
+        const prevBtn = document.getElementById("prev-slide");
+        const nextBtn = document.getElementById("next-slide");
+        const scrollbarThumb = document.querySelector(".scrollbar-thumb");
+        const scrollbarTrack = document.querySelector(".slider-scrollbar");
+
+        const maxScrollLeft = imageList.scrollWidth - imageList.clientWidth;
+
+        nextBtn.addEventListener("click", () => {
+            imageList.scrollBy({ left: imageList.clientWidth, behavior: "smooth" });
+        });
+
+        prevBtn.addEventListener("click", () => {
+            imageList.scrollBy({ left: -imageList.clientWidth, behavior: "smooth" });
+        });
+
+        imageList.addEventListener("scroll", () => {
+            const scrollLeft = imageList.scrollLeft;
+            const thumbPos = (scrollLeft / maxScrollLeft) * (scrollbarTrack.clientWidth - scrollbarThumb.clientWidth);
+            scrollbarThumb.style.left = `${thumbPos}px`;
+            prevBtn.style.display = scrollLeft <= 0 ? "none" : "flex";
+            nextBtn.style.display = scrollLeft >= maxScrollLeft ? "none" : "flex";
+        });
+
+        scrollbarThumb.addEventListener("mousedown", (e) => {
+            const startX = e.clientX;
+            const startLeft = scrollbarThumb.offsetLeft;
+
+            const onMouseMove = (e) => {
+                const dx = e.clientX - startX;
+                const newLeft = Math.min(Math.max(0, startLeft + dx), scrollbarTrack.clientWidth - scrollbarThumb.clientWidth);
+                scrollbarThumb.style.left = `${newLeft}px`;
+                imageList.scrollLeft = (newLeft / (scrollbarTrack.clientWidth - scrollbarThumb.clientWidth)) * maxScrollLeft;
+            };
+
+            const onMouseUp = () => {
+                document.removeEventListener("mousemove", onMouseMove);
+                document.removeEventListener("mouseup", onMouseUp);
+            };
+
+            document.addEventListener("mousemove", onMouseMove);
+            document.addEventListener("mouseup", onMouseUp);
+        });
+    </script>
+
+</body>
+
+</html>
