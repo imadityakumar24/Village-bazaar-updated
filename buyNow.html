@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Now - Product Details</title>
+    <link rel="stylesheet" href="buy-now.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+
+        .product-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+
+        .product-details {
+            display: flex;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 800px;
+        }
+
+        .product-image {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .product-image img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-info {
+            flex: 2;
+            padding: 20px;
+        }
+
+        .product-info h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 24px;
+            color: #f50057;
+            margin-bottom: 20px;
+        }
+
+        .product-info p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #ff4081;
+            color: #fff;
+            font-size: 18px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #f50057;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="product-container">
+        <div class="product-details">
+            <div class="product-image">
+                <img id="productImage" src="" alt="Product Image">
+            </div>
+            <div class="product-info">
+                <h2 id="productName">Product Name</h2>
+                <p class="price" id="productPrice">Price: ₹--</p>
+                <p id="productDescription">Description: --</p>
+                <button class="btn" onclick="proceedToPayment()">Proceed to Payment</button>
+            </div>
+        </div>
+
+        
+
+    </div>
+
+    <script src="buy-now.js"></script>
+
+</body>
+
+</html>
